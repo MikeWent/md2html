@@ -10,23 +10,19 @@ For example, you have a `document.md` file and want to convert it to HTML. Simpl
 
 Then copy `index.html` to a directory accessible by a web-server or just open in any web-browser.
 
-## Installation/Upgrade
-
-### System-wide
-
-```sudo -H pip3 install --upgrade git+https://github.com/MikeWent/md2html.git```
-
-### User-only
+## Installation
 
 ```bash
-git clone https://github.com/MikeWent/md2html.git
-cd md2html/
+git clone https://github.com/MikeWent/md2html.git && cd md2html
+pip3 install --user -r requirements.txt
 sudo ln -s $PWD/md2html.py /usr/bin/local/md2html.py
 ```
 
-or
+## Upgrade
 
-```pip3 install --user --upgrade git+https://github.com/MikeWent/md2html.git```
+```bash
+git pull
+```
 
 ## License
 
