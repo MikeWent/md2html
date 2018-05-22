@@ -18,9 +18,6 @@ git clone https://github.com/MikeWent/md2html.git && cd md2html
 
 # 2. Install dependencies
 pip3 install --user -r requirements.txt
-
-# 3. Create symlink (recommended)
-sudo ln -s $PWD/md2html.py /usr/local/bin/md2html.py
 ```
 
 ## Upgrade
