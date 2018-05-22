@@ -17,7 +17,7 @@ with open(SCRIPT_DIR+"flavours.yaml", "r") as f:
 args = argparse.ArgumentParser()
 args.add_argument("input", help="Markdown file")
 args.add_argument("-o", "--output", metavar="FILENAME", help="output HTML filename")
-args.add_argument("-f", "--flavour", help="prefered CSS flavour to use (see flavours.yaml)", default="minicss", choices=FLAVOURS.keys())
+args.add_argument("-f", "--flavour", help="prefered CSS flavour to use (see flavours.yaml)", default="mini", choices=FLAVOURS.keys())
 args.add_argument("-t", "--title", help="HTML title tag", default=None)
 options = args.parse_args()
 
@@ -51,6 +51,13 @@ main_container_template = SELECTED_FLAVOUR.get("container", "{{ content }}")
 BLOCK = Template(block_template)
 MAIN_CONTAINER = Template(main_container_template)
 
+# Generate a list of CSS stylesheet URLs for jinja2 template
+u = SELECTED_FLAVOUR.get("url", None)
+if isinstance(u, str):
+    stylesheet_urls = [u]
+else:
+    stylesheet_urls = u
+
 # Favour-specified document structure:
 #
 #   html (HTML_PAGE_TEMPLATE)
@@ -67,7 +74,7 @@ final_html_output = HTML_PAGE_TEMPLATE.render(
             text=converted_markdown
         )
     ),
-    stylesheet_url=SELECTED_FLAVOUR.get("url", None),
+    stylesheet_urls=stylesheet_urls,
     custom_css=SELECTED_FLAVOUR.get("css", None),
     title=options.title
 )

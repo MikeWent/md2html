@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% if title %}<title>{{ title }}</title>{% endif %}
-    {% if stylesheet_url %}<link rel="stylesheet" href="{{ stylesheet_url }}">{% endif %}
+    {% if stylesheet_urls %}{% for url in stylesheet_urls %}<link rel="stylesheet" href="{{ url }}">{% endfor %}{% endif %}
     {% if custom_css %}<style>
         {{ custom_css }}
     </style>{% endif %}

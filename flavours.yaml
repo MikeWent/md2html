@@ -1,5 +1,15 @@
-minicss:
+mini:
   url: "https://cdn.rawgit.com/Chalarangelo/mini.css/v2.3.7/dist/mini-default.min.css"
+  container: '<div class="container">{{ content }}</div>'
+  block: '<div class="row cols-sm-12 cols-md-8 col-md-offset-2"><div class="col-md-offset-1">{{ text }}</div></div>'
+
+mini-dark:
+  url: "https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css"
+  container: '<div class="container">{{ content }}</div>'
+  block: '<div class="row cols-sm-12 cols-md-8 col-md-offset-2"><div class="col-md-offset-1">{{ text }}</div></div>'
+
+mini-nord:
+  url: "https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-nord.min.css"
   container: '<div class="container">{{ content }}</div>'
   block: '<div class="row cols-sm-12 cols-md-8 col-md-offset-2"><div class="col-md-offset-1">{{ text }}</div></div>'
 
@@ -7,7 +17,14 @@ bootstrap:
   url: "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
   container: '<main role="main" class="container mt-5">{{ content }}</main>'
 
-mincss:
+min:
   url: "https://mincss.com/entireframework.min.css"
   container: '<div class="container">{{ content }}'
 
+milligram:
+  url:
+    - "//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    - "//cdn.rawgit.com/necolas/normalize.css/master/normalize.css"
+    - "//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css"
+  container: '<div class="container">{{ content }}</div>'
+  block: '<div class="row"><div class="column column-60 column-offset-5">{{ text }}</div></div>'
