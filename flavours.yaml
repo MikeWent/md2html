@@ -1,8 +1,13 @@
-mincss:
+minicss:
   url: "https://cdn.rawgit.com/Chalarangelo/mini.css/v2.3.7/dist/mini-default.min.css"
   container: '<div class="container">{{ content }}</div>'
-  block: '<div class="row cols-sm-12 cols-md-10"><div class="col-md-offset-1">{{ text }}</div></div>'
+  block: '<div class="row cols-sm-12 cols-md-8 col-md-offset-2"><div class="col-md-offset-1">{{ text }}</div></div>'
 
 bootstrap:
   url: "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
   container: '<main role="main" class="container mt-5">{{ content }}</main>'
+
+mincss:
+  url: "https://mincss.com/entireframework.min.css"
+  container: '<div class="container">{{ content }}'
+

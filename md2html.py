@@ -17,7 +17,7 @@ with open(SCRIPT_DIR+"flavours.yaml", "r") as f:
 args = argparse.ArgumentParser()
 args.add_argument("input", help="Markdown file")
 args.add_argument("-o", "--output", metavar="FILENAME", help="output HTML filename")
-args.add_argument("-f", "--flavour", help="prefered CSS flavour to use (see flavours.yaml)", default="mincss", choices=FLAVOURS.keys())
+args.add_argument("-f", "--flavour", help="prefered CSS flavour to use (see flavours.yaml)", default="minicss", choices=FLAVOURS.keys())
 args.add_argument("-t", "--title", help="HTML title tag", default=None)
 options = args.parse_args()
 
@@ -36,7 +36,8 @@ converted_markdown = markdown_path(options.input, extras=(
         "fenced-code-blocks",
         "header-ids",
         "footnotes",
-        "tables"
+        "tables",
+        "markdown-in-html"
     ))
 
 with open(SCRIPT_DIR+"template.html", "r") as f:
