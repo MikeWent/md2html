@@ -13,8 +13,16 @@ Then copy `index.html` to a directory accessible by a web-server or just open in
 ## Installation
 
 ```bash
+# 1. Clone the repo
+
 git clone https://github.com/MikeWent/md2html.git && cd md2html
+
+# 2. Install dependencies
+
 pip3 install --user -r requirements.txt
+
+# 3. Create symlink (recommended)
+
 sudo ln -s $PWD/md2html.py /usr/bin/local/md2html.py
 ```
 
