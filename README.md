@@ -1,6 +1,6 @@
 # md2html
 
-Create beautiful CSS-flavoured HTML page from Markdown file
+Generate beautiful CSS-flavoured HTML page from Markdown file
 
 ## Usage
 
