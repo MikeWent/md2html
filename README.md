@@ -6,7 +6,7 @@ Generate beautiful CSS-flavoured HTML page from Markdown file
 
 For example, you have a `document.md` file and want to convert it to HTML. Simply run:
 
-```$ md2html.py document.md -o index.html```
+```$ ./md2html.py document.md -o index.html```
 
 Then copy `index.html` to a directory accessible by a web-server or just open in any web-browser.
 
