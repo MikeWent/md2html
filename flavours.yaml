@@ -6,6 +6,12 @@ mini:
     ul {
       list-style: square;
     }
+    blockquote {
+      padding: 0.5rem 0.5rem;
+    }
+    blockquote::after {
+      display: none;
+    }
 
 mini-dark:
   url: "https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css"
