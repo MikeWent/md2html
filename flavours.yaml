@@ -1,7 +1,11 @@
 mini:
   url: "https://cdn.rawgit.com/Chalarangelo/mini.css/v2.3.7/dist/mini-default.min.css"
   container: '<div class="container">{{ content }}</div>'
-  block: '<div class="row cols-sm-12 cols-md-8 col-md-offset-2"><div class="col-md-offset-1">{{ text }}</div></div>'
+  block: '<div class="row cols-sm-12 cols-md-9 col-md-offset-1"><div class="col-md-offset-1">{{ text }}</div></div>'
+  css: |
+    ul {
+      list-style: square;
+    }
 
 mini-dark:
   url: "https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css"
