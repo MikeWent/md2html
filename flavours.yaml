@@ -53,8 +53,13 @@ min:
 
 milligram:
   url:
-    - "//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
-    - "//cdn.rawgit.com/necolas/normalize.css/master/normalize.css"
-    - "//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css"
+    - "https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    - "https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css"
+    - "https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css"
   container: '<div class="container">{{ content }}</div>'
   block: '<div class="row"><div class="column column-60 column-offset-5">{{ text }}</div></div>'
+
+bass:
+  url: "https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
+  container: '<div class="container px2">{{ content }}</div>'
+
