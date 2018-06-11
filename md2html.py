@@ -3,8 +3,14 @@ import argparse
 from os import path
 
 import yaml
+from time import strftime
 from jinja2 import Template
-from markdown2 import markdown_path
+from markdown2 import markdown
+
+SIGNATURE = strftime("""<br>
+
+---
+Generated via [md2html](https://github.com/MikeWent/md2html) on %Y.%m.%d %H:%M:%S %z""")
 
 # Determine absolute system path to directory with md2html.py
 # to use it instead of relative path
@@ -19,6 +25,7 @@ args.add_argument("input", help="Markdown file")
 args.add_argument("-o", "--output", metavar="FILENAME", help="output HTML filename")
 args.add_argument("-f", "--flavour", help="prefered CSS flavour to use (see flavours.yaml)", default="mini", choices=FLAVOURS.keys())
 args.add_argument("-t", "--title", help="HTML title tag", default=None)
+args.add_argument("-g", "--signature", help="add signature to output file", action="store_true", default=False)
 options = args.parse_args()
 
 if options.output:
@@ -31,8 +38,16 @@ else:
         # just print to stdout
         print(anything)
 
+# Read markdown file
+with open(options.input, "r") as f:
+    markdown_source = f.read()
+
+# Add signature (if -g/--signature) passed
+if options.signature:
+    markdown_source = markdown_source.join(("\n", SIGNATURE))
+
 # Convert markdown to basic HTML here
-converted_markdown = markdown_path(options.input, extras=(
+converted_markdown = markdown(markdown_source, extras=(
         "fenced-code-blocks",
         "header-ids",
         "footnotes",
