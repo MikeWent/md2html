@@ -6,6 +6,7 @@ import yaml
 from time import strftime
 from jinja2 import Template
 from markdown2 import markdown
+from requests import get as http_get
 
 SIGNATURE = strftime("""<br>
 
@@ -26,6 +27,7 @@ args.add_argument("-o", "--output", metavar="FILENAME", help="output HTML filena
 args.add_argument("-f", "--flavour", help="prefered CSS flavour to use (see flavours.yaml)", default="mini", choices=FLAVOURS.keys())
 args.add_argument("-t", "--title", help="HTML title tag", default=None)
 args.add_argument("-g", "--signature", help="add signature to output file", action="store_true", default=False)
+args.add_argument("-i", "--include-stylesheet", help="include CSS stylesheet into output HTML file to make styles available offline", action="store_true")
 options = args.parse_args()
 
 if options.output:
@@ -66,12 +68,21 @@ main_container_template = SELECTED_FLAVOUR.get("container", "{{ content }}")
 BLOCK = Template(block_template)
 MAIN_CONTAINER = Template(main_container_template)
 
+
 # Generate a list of CSS stylesheet URLs for jinja2 template
 u = SELECTED_FLAVOUR.get("url", None)
 if isinstance(u, str):
     stylesheet_urls = [u]
 else:
     stylesheet_urls = u
+
+# Download stylesheets if -i/--include-stylesheet is specified
+included_stylesheets = []
+if options.include_stylesheet:
+    for stylesheet_url in stylesheet_urls:
+        included_stylesheets.append(
+            http_get(stylesheet_url).text
+        )
 
 # Favour-specified document structure:
 #
@@ -89,6 +100,7 @@ final_html_output = HTML_PAGE_TEMPLATE.render(
             text=converted_markdown
         )
     ),
+    included_stylesheets=included_stylesheets,
     stylesheet_urls=stylesheet_urls,
     custom_css=SELECTED_FLAVOUR.get("css", None),
     title=options.title
