@@ -105,4 +105,4 @@ venv.bak/
 
 # Trash
 test/
-build/
+cache/

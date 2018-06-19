@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 import argparse
-from os import path
+from hashlib import md5
+from os import path, mkdir
+from time import strftime
 
 import yaml
-from time import strftime
 from jinja2 import Template
 from markdown2 import markdown
-from requests import get as http_get
+from requests import get as requests_get
 
-SIGNATURE = strftime("""<br>
-
+SIGNATURE = strftime("""
 ---
 Generated via [md2html](https://github.com/MikeWent/md2html) on %Y.%m.%d %H:%M:%S %z""")
 
@@ -30,14 +30,33 @@ args.add_argument("-g", "--signature", help="add signature to output file", acti
 args.add_argument("-i", "--include-stylesheet", help="include CSS stylesheet into output HTML file to make styles available offline", action="store_true")
 options = args.parse_args()
 
+def http_cached_get(resource_url):
+    """Simple HTTP resource fetcher with caching mechanism""" 
+    cache_dir = SCRIPT_DIR+"cache"
+    cached_resource_filename = cache_dir+"/"+md5(resource_url.encode("utf-8")).hexdigest()
+    # Create cache dir if doesn't exist
+    if not path.isdir(cache_dir):
+        mkdir(cache_dir)
+    # Get file from cache
+    if path.isfile(cached_resource_filename):
+        with open(cached_resource_filename, "r") as f:
+            return f.read()
+    else:
+        # Save file to cache
+        r = requests_get(resource_url)
+        content = r.text.strip()
+        with open(cached_resource_filename, "w") as f:
+            f.write(content)
+        return content
+
 if options.output:
     def stdout(anything):
-        # save to file (append mode)
+        # Save to file (append mode)
         with open(options.output, "w") as f:
             f.write(anything)
 else:
     def stdout(anything):
-        # just print to stdout
+        # Just print to stdout
         print(anything)
 
 # Read markdown file
@@ -68,7 +87,6 @@ main_container_template = SELECTED_FLAVOUR.get("container", "{{ content }}")
 BLOCK = Template(block_template)
 MAIN_CONTAINER = Template(main_container_template)
 
-
 # Generate a list of CSS stylesheet URLs for jinja2 template
 u = SELECTED_FLAVOUR.get("url", None)
 if isinstance(u, str):
@@ -81,7 +99,7 @@ included_stylesheets = []
 if options.include_stylesheet:
     for stylesheet_url in stylesheet_urls:
         included_stylesheets.append(
-            http_get(stylesheet_url).text
+            http_cached_get(stylesheet_url)
         )
 
 # Favour-specified document structure:
