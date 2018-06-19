@@ -4,20 +4,48 @@ Generate beautiful CSS-flavoured HTML page from Markdown file
 
 ## Usage
 
-For example, you have a `document.md` file and want to convert it to HTML. Simply run:
+### Basic
 
-```$ ./md2html.py document.md -o index.html```
+```bash
+./md2html.py README.md > docs.html
+```
 
-Then copy `index.html` to a directory accessible by a web-server or just open in any web-browser.
+or
+
+```bash
+./md2html.py README.md -o docs.html
+```
+
+### Change flavour
+
+Add option `-f` or `--flavour`. See `flavours.yaml` or `./md2html.py --help` to list available flavours.
+
+```bash
+./md2html.py -f bootstrap README.md > docs.html
+```
+
+### Included stylesheets
+
+Add option `-i` or `--include-stylesheet`. This might be useful if you need to browse generated documents offline.
+
+```bash
+./md2html.py -i README.md > docs.html
+```
+
+Output HTML will contain `<style>` with pre-downloaded stylesheet(s).
 
 ## Installation
 
-```bash
-# 1. Clone the repo
-git clone https://github.com/MikeWent/md2html.git && cd md2html
+Clone this repository
 
-# 2. Install dependencies
-pip3 install --user -r requirements.txt
+```bash
+git clone https://github.com/MikeWent/md2html.git && cd md2html
+```
+
+Install dependencies
+
+```bash
+pip3 install --user --upgrade -r requirements.txt
 ```
 
 ## Upgrade
@@ -28,4 +56,4 @@ git pull
 
 ## License
 
-MIT
+> MIT
