@@ -12,6 +12,9 @@ mini:
     blockquote::after {
       display: none;
     }
+    code {
+      padding: 0;
+    }
 
 mini-dark:
   url: "https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css"
