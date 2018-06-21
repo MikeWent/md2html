@@ -18,12 +18,12 @@ md2html -f mini README.md > docs.html
 
 Available flavours:
 
-- mini
-- mini-dark
-- skeleton
-- bootstrap
-- min
-- milligram
+- [mini](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini.html)
+- [mini-dark](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini-dark.html)
+- [skeleton](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-skeleton.html)
+- [bootstrap](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-bootstrap.html)
+- [min](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-min.html)
+- [milligram](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-milligram.html)
 
 You can also run `md2html --help` to see available flavours.
 
