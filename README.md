@@ -2,37 +2,21 @@
 
 Generate beautiful CSS-flavoured HTML page from Markdown file
 
-## Usage
-
-### Basic
+## How to use
 
 ```bash
-./md2html.py README.md > docs.html
+md2html.py README.md > docs.html
 ```
 
-or
-
-```bash
-./md2html.py README.md -o docs.html
-```
+Alternatively you can use option `-o` instead of `>` to specify output file.
 
 ### Change flavour
 
-Add option `-f` or `--flavour`. See `flavours.yaml` or `./md2html.py --help` to list available flavours.
-
-```bash
-./md2html.py -f bootstrap README.md > docs.html
-```
+Add option `-f` or `--flavour`. Run `md2html.py --help` to see available flavours.
 
 ### Included stylesheets
 
-Add option `-i` or `--include-stylesheet`. This might be useful if you need to browse generated documents offline.
-
-```bash
-./md2html.py -i README.md > docs.html
-```
-
-Output HTML will contain `<style>` with pre-downloaded stylesheet(s).
+Add option `-i` or `--include-stylesheet`. Output HTML will contain `<style>` with pre-downloaded stylesheet(s) instead of just `<link>` tag. This might be useful if you need to browse generated documents offline.
 
 ## Installation
 
@@ -48,12 +32,20 @@ Install dependencies
 pip3 install --user --upgrade -r requirements.txt
 ```
 
-## Upgrade
+### Upgrade (run this once a week)
+
+Fetch updates
 
 ```bash
 git pull
 ```
 
+Update dependencies
+
+```
+pip3 install --user --upgrade -r requirements.txt
+```
+
 ## License
 
-> MIT
+MIT
