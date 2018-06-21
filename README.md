@@ -18,7 +18,7 @@ md2html -f mini README.md > docs.html
 
 Available flavours:
 
-- [mini](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini.html)
+- [mini](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini.html) (default)
 - [mini-dark](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini-dark.html)
 - [skeleton](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-skeleton.html)
 - [bootstrap](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-bootstrap.html)
