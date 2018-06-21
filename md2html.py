@@ -82,11 +82,9 @@ with open(SCRIPT_DIR+"/template.html", "r") as f:
     HTML_PAGE_TEMPLATE = Template(f.read())
 SELECTED_FLAVOUR = FLAVOURS.get(options.flavour, None)
 
-# If some templates doesn't exist for current
-# flavour, simply replace them with placeholder
-block_template = SELECTED_FLAVOUR.get("block", "{{ text }}")
+# If container template doesn't exist for current
+# flavour, simply replace it with placeholder
 main_container_template = SELECTED_FLAVOUR.get("container", "{{ content }}")
-BLOCK = Template(block_template)
 MAIN_CONTAINER = Template(main_container_template)
 
 # Generate a list of CSS stylesheet URLs for jinja2 template
@@ -107,18 +105,15 @@ if options.include_stylesheet:
 # Favour-specified document structure:
 #
 #   html (HTML_PAGE_TEMPLATE)
-#   └─ container (MAIN_CONTAINER, optionally)
-#      └─ block (BLOCK, optionally)
-#         ├─ p
-#         ├─ img
-#         ├─ pre
-#         └─ ...
+#   └─ container (MAIN_CONTAINER, optional)
+#      ├─ p
+#      ├─ img
+#      ├─ pre
+#      └─ ...
 
 final_html_output = HTML_PAGE_TEMPLATE.render(
     body=MAIN_CONTAINER.render(
-        content=BLOCK.render(
-            text=converted_markdown
-        )
+        content=converted_markdown
     ),
     included_stylesheets=included_stylesheets,
     stylesheet_urls=stylesheet_urls,

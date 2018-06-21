@@ -1,7 +1,13 @@
 mini:
   url: "https://cdn.rawgit.com/Chalarangelo/mini.css/v2.3.7/dist/mini-default.min.css"
-  container: '<div class="container">{{ content }}</div>'
-  block: '<div class="row cols-sm-12 cols-md-9 col-md-offset-1"><div class="col-md-offset-1">{{ text }}</div></div>'
+  container: |
+    <div class="container">
+      <div class="row cols-sm-12 cols-md-9 col-md-offset-1">
+        <div class="col-md-offset-1">
+          {{ content }}
+        </div>
+      </div>
+    </div>
   css: |
     ul {
       list-style: square;
@@ -21,8 +27,14 @@ mini:
 
 mini-dark:
   url: "https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css"
-  container: '<div class="container">{{ content }}</div>'
-  block: '<div class="row cols-sm-12 cols-md-9 col-md-offset-1"><div class="col-md-offset-1">{{ text }}</div></div>'
+  container: |
+    <div class="container">
+      <div class="row cols-sm-12 cols-md-9 col-md-offset-1">
+        <div class="col-md-offset-1">
+          {{ content }}
+        </div>
+      </div>
+    </div>
   css: |
     ul {
       list-style: square;
@@ -62,8 +74,14 @@ milligram:
     - "https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
     - "https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css"
     - "https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css"
-  container: '<div class="container">{{ content }}</div>'
-  block: '<div class="row"><div class="column column-60 column-offset-20">{{ text }}</div></div>'
+  container: |
+    <div class="container">
+      <div class="row">
+        <div class="column column-60 column-offset-20">
+          {{ content }}
+        </div>
+      </div>
+    </div>
   css: |
     .container {
       padding-top: 2em;
@@ -73,8 +91,14 @@ skeleton:
   url:
     - "https://cdn.rawgit.com/dhg/Skeleton/master/css/normalize.css"
     - "https://cdn.rawgit.com/dhg/Skeleton/master/css/skeleton.css"
-  container: '<div class="container">{{ content }}</div>'
-  block: '<div class="row"><div class="column">{{ text }}</div></div>'
+  container: |
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          {{ content }}
+        </div>
+      </div>
+    </div>
   css: |
     .container {
       max-width: 800px;
