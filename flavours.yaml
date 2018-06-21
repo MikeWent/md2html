@@ -30,23 +30,23 @@ mini-dark:
     blockquote {
       padding: 0.5rem 0.5rem;
     }
-    blockquote::after {
+    blockquote::before, blockquote::after {
       display: none;
     }
-
-mini-nord:
-  url: "https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-nord.min.css"
-  container: '<div class="container">{{ content }}</div>'
-  block: '<div class="row cols-sm-12 cols-md-9 col-md-offset-1"><div class="col-md-offset-1">{{ text }}</div></div>'
-  css: |
-    ul {
-      list-style: square;
+    code {
+      padding: 0;
     }
-    blockquote {
-      padding: 0.5rem 0.5rem;
+    pre, blockquote {
+      border: 0;
     }
-    blockquote::after {
-      display: none;
+    ::-webkit-scrollbar {
+      width: 0.05rem;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #555;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #666;
     }
 
 bootstrap:
@@ -69,15 +69,12 @@ milligram:
       padding-top: 2em;
     }
 
-bass:
-  url: "https://unpkg.com/basscss@8.0.2/css/basscss.min.css"
-  container: '<div class="container px2">{{ content }}</div>'
-
 skeleton:
   url:
-    - "https://raw.githubusercontent.com/dhg/Skeleton/master/css/normalize.css"
-    - "https://raw.githubusercontent.com/dhg/Skeleton/master/css/skeleton.css"
+    - "https://cdn.rawgit.com/dhg/Skeleton/master/css/normalize.css"
+    - "https://cdn.rawgit.com/dhg/Skeleton/master/css/skeleton.css"
   container: '<div class="container">{{ content }}</div>'
+  block: '<div class="row"><div class="column">{{ text }}</div></div>'
   css: |
     .container {
       max-width: 800px;
