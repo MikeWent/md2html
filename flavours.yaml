@@ -89,13 +89,14 @@ milligram:
   container: |
     <div class="container">
       <div class="row">
-        <div class="column column-60 column-offset-20">
+        <div class="column">
           {{ content }}
         </div>
       </div>
     </div>
   css-hack: |
     .container {
+      max-width: 800px;
       padding-top: 3rem;
       padding-bottom: 3rem;
     }
