@@ -20,12 +20,10 @@ Available flavours:
 
 - mini
 - mini-dark
-- mini-nord
+- skeleton
 - bootstrap
 - min
 - milligram
-- bass
-- skeleton
 
 You can also run `md2html --help` to see available flavours.
 
