@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import argparse
+import sys
 from hashlib import md5
-from os import path, mkdir
+from os import mkdir, path
 from time import strftime
 
 import yaml
@@ -13,18 +14,20 @@ SIGNATURE = strftime("""
 ---
 Generated via [md2html](https://github.com/MikeWent/md2html) on %Y.%m.%d %H:%M:%S %z""")
 
+CACHE_DIR = "/tmp/md2html_cache" # no trailing slash
+
 # Determine absolute system path to directory with md2html.py
 # to use it instead of relative path
-SCRIPT_DIR = path.dirname(path.abspath(__file__))+"/"
+SCRIPT_DIR = sys.path[0]
 
 # Load flavours
-with open(SCRIPT_DIR+"flavours.yaml", "r") as f:
+with open(SCRIPT_DIR+"/flavours.yaml", "r") as f:
     FLAVOURS = yaml.load(f)
 
 args = argparse.ArgumentParser()
 args.add_argument("input", help="Markdown file")
 args.add_argument("-o", "--output", metavar="FILENAME", help="output HTML filename")
-args.add_argument("-f", "--flavour", help="prefered CSS flavour to use (see flavours.yaml)", default="mini", choices=FLAVOURS.keys())
+args.add_argument("-f", "--flavour", help="preferred CSS flavour to use (see flavours.yaml)", default="mini", choices=FLAVOURS.keys())
 args.add_argument("-t", "--title", help="HTML title tag", default=None)
 args.add_argument("-g", "--signature", help="add signature to output file", action="store_true", default=False)
 args.add_argument("-i", "--include-stylesheet", help="include CSS stylesheet into output HTML file to make styles available offline", action="store_true")
@@ -32,11 +35,10 @@ options = args.parse_args()
 
 def http_cached_get(resource_url):
     """Simple HTTP resource fetcher with caching mechanism""" 
-    cache_dir = SCRIPT_DIR+"cache"
-    cached_resource_filename = cache_dir+"/"+md5(resource_url.encode("utf-8")).hexdigest()
+    cached_resource_filename = CACHE_DIR+"/"+md5(resource_url.encode("utf-8")).hexdigest()
     # Create cache dir if doesn't exist
-    if not path.isdir(cache_dir):
-        mkdir(cache_dir)
+    if not path.isdir(CACHE_DIR):
+        mkdir(CACHE_DIR)
     # Get file from cache
     if path.isfile(cached_resource_filename):
         with open(cached_resource_filename, "r") as f:
@@ -76,7 +78,7 @@ converted_markdown = markdown(markdown_source, extras=(
         "markdown-in-html"
     ))
 
-with open(SCRIPT_DIR+"template.html", "r") as f:
+with open(SCRIPT_DIR+"/template.html", "r") as f:
     HTML_PAGE_TEMPLATE = Template(f.read())
 SELECTED_FLAVOUR = FLAVOURS.get(options.flavour, None)
 
