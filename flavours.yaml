@@ -9,6 +9,10 @@ mini:
       </div>
     </div>
   css-hack: |
+    .container {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;      
+    }
     ul {
       list-style: square;
     }
@@ -36,13 +40,17 @@ mini-dark:
       </div>
     </div>
   css-hack: |
+    .container {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;      
+    }
     ul {
       list-style: square;
     }
     blockquote {
       padding: 0.5rem 0.5rem;
     }
-    blockquote::before, blockquote::after {
+    blockquote::after {
       display: none;
     }
     code {
@@ -64,6 +72,10 @@ mini-dark:
 bootstrap:
   url: "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
   container: '<main role="main" class="container mt-5">{{ content }}</main>'
+  css-hack: |
+    .container {
+      max-width: 800px;
+    }
 
 min:
   url: "https://mincss.com/entireframework.min.css"
@@ -84,7 +96,8 @@ milligram:
     </div>
   css-hack: |
     .container {
-      padding-top: 2em;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
     }
 
 skeleton:
@@ -102,4 +115,6 @@ skeleton:
   css-hack: |
     .container {
       max-width: 800px;
+      padding-bottom: 3rem;
+      padding-top: 3rem;
     }
