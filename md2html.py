@@ -117,7 +117,7 @@ final_html_output = HTML_PAGE_TEMPLATE.render(
     ),
     included_stylesheets=included_stylesheets,
     stylesheet_urls=stylesheet_urls,
-    custom_css=SELECTED_FLAVOUR.get("css", None),
+    custom_css=SELECTED_FLAVOUR.get("css-hack", None),
     title=options.title
 )
 

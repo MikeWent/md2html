@@ -8,7 +8,7 @@ mini:
         </div>
       </div>
     </div>
-  css: |
+  css-hack: |
     ul {
       list-style: square;
     }
@@ -35,7 +35,7 @@ mini-dark:
         </div>
       </div>
     </div>
-  css: |
+  css-hack: |
     ul {
       list-style: square;
     }
@@ -82,7 +82,7 @@ milligram:
         </div>
       </div>
     </div>
-  css: |
+  css-hack: |
     .container {
       padding-top: 2em;
     }
@@ -99,7 +99,7 @@ skeleton:
         </div>
       </div>
     </div>
-  css: |
+  css-hack: |
     .container {
       max-width: 800px;
     }
