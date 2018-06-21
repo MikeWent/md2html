@@ -103,6 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# Trash
+# etc
+.vscode/
 test/
-cache/
