@@ -35,6 +35,16 @@ md2html.py -i README.md > docs.html
 
 Output HTML will contain `<style>` with pre-downloaded stylesheet(s) instead of just `<link>` tag. This might be useful if you need to browse generated documents offline.
 
+### HTML title
+
+```Markdown
+title: My awesome document
+
+# The rest of Markdown
+```
+
+Also you can use `-t` to specify page title without editing the source document.
+
 ## Installation
 
 Clone this repository

@@ -26,11 +26,11 @@ with open(SCRIPT_DIR+"/flavours.yaml", "r") as f:
 
 args = argparse.ArgumentParser()
 args.add_argument("input", help="Markdown file")
-args.add_argument("-o", "--output", metavar="FILENAME", help="output HTML filename")
-args.add_argument("-f", "--flavour", help="preferred CSS flavour to use (see flavours.yaml)", default="mini", choices=FLAVOURS.keys())
-args.add_argument("-t", "--title", help="HTML title tag", default=None)
+args.add_argument("-o", "--output", help="output HTML filename", metavar="")
+args.add_argument("-f", "--flavour", help="preferred CSS flavour to use. Values: "+", ".join(FLAVOURS.keys()), choices=FLAVOURS.keys(), default="mini", metavar="")
+args.add_argument("-t", "--title", help="HTML title tag", default=None, metavar="")
 args.add_argument("-g", "--signature", help="add signature to output file", action="store_true", default=False)
-args.add_argument("-i", "--include-stylesheet", help="include CSS stylesheet into output HTML file to make styles available offline", action="store_true")
+args.add_argument("-i", "--include-css", help="include CSS stylesheet into output HTML file to make styles available offline", action="store_true")
 args.add_argument("-e", "--allow-html", help="don't escape HTML tags found in Markdown document", action="store_true")
 options = args.parse_args()
 
@@ -66,15 +66,16 @@ else:
 with open(options.input, "r") as f:
     markdown_source = f.read()
 
-# Add signature (if -g/--signature) passed
+# Add signature (if -g/--signature passed)
 if options.signature:
     markdown_source = markdown_source.join(("\n", SIGNATURE))
 
 extras = [
+    "metadata",
     "fenced-code-blocks",
     "header-ids",
     "footnotes",
-    "tables"
+    "tables",
 ]
 
 if options.allow_html:
@@ -99,13 +100,20 @@ if isinstance(u, str):
 else:
     stylesheet_urls = u
 
-# Download stylesheets if -i/--include-stylesheet is specified
+# Download stylesheets if -i/--include-css is specified
 included_stylesheets = []
-if options.include_stylesheet:
+if options.include_css:
     for stylesheet_url in stylesheet_urls:
         included_stylesheets.append(
             http_cached_get(stylesheet_url)
         )
+
+if options.title:
+    title = options.title
+elif converted_markdown.metadata:
+    title = converted_markdown.metadata.get("title", None)
+else:
+    title = None
 
 # Favour-specified document structure:
 #
@@ -123,7 +131,7 @@ final_html_output = HTML_PAGE_TEMPLATE.render(
     included_stylesheets=included_stylesheets,
     stylesheet_urls=stylesheet_urls,
     custom_css=SELECTED_FLAVOUR.get("css-hack", None),
-    title=options.title
+    title=title
 )
 
 stdout(final_html_output)

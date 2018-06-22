@@ -1,3 +1,5 @@
+title: An exhibit of Markdown
+
 # An exhibit of Markdown
 
 This note demonstrates some of what [Markdown][1] is capable of doing.
