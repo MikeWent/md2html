@@ -31,6 +31,7 @@ args.add_argument("-f", "--flavour", help="preferred CSS flavour to use (see fla
 args.add_argument("-t", "--title", help="HTML title tag", default=None)
 args.add_argument("-g", "--signature", help="add signature to output file", action="store_true", default=False)
 args.add_argument("-i", "--include-stylesheet", help="include CSS stylesheet into output HTML file to make styles available offline", action="store_true")
+args.add_argument("-e", "--allow-html", help="don't escape HTML tags found in Markdown document", action="store_true")
 options = args.parse_args()
 
 def http_cached_get(resource_url):
@@ -69,14 +70,18 @@ with open(options.input, "r") as f:
 if options.signature:
     markdown_source = markdown_source.join(("\n", SIGNATURE))
 
+extras = [
+    "fenced-code-blocks",
+    "header-ids",
+    "footnotes",
+    "tables"
+]
+
+if options.allow_html:
+    extras.append("markdown-in-html")
+
 # Convert markdown to basic HTML here
-converted_markdown = markdown(markdown_source, extras=(
-        "fenced-code-blocks",
-        "header-ids",
-        "footnotes",
-        "tables",
-        "markdown-in-html"
-    ))
+converted_markdown = markdown(markdown_source, extras=extras)
 
 with open(SCRIPT_DIR+"/template.html", "r") as f:
     HTML_PAGE_TEMPLATE = Template(f.read())
