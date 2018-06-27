@@ -16,9 +16,9 @@ Alternatively you can use option `-o` instead of `>` to specify output file.
 md2html -f mini README.md > docs.html
 ```
 
-Available flavours:
+Available flavours (click to preview):
 
-- [mini](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini.html) (default)
+- [mini](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini.html) — default
 - [mini-dark](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-mini-dark.html)
 - [skeleton](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-skeleton.html)
 - [bootstrap](https://rawgit.com/MikeWent/md2html/master/examples/exhibit-bootstrap.html)
@@ -37,13 +37,23 @@ Output HTML will contain `<style>` with pre-downloaded stylesheet(s) instead of 
 
 ### HTML title
 
-```Markdown
-title: My awesome document
+```
+---
+title: My awesome document title
+---
 
 # The rest of Markdown
 ```
 
-Also you can use `-t` to specify page title without editing the source document.
+or evenen without delimiters:
+
+```
+title: My awesome document title
+
+# The rest of Markdown
+```
+
+Also you can use `-t` to set page title without editing the source document.
 
 ## Installation
 
