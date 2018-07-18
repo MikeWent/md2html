@@ -30,8 +30,8 @@ args.add_argument("-o", "--output", help="output HTML filename", metavar="")
 args.add_argument("-f", "--flavour", help="preferred CSS flavour to use. Values: "+", ".join(FLAVOURS.keys()), choices=FLAVOURS.keys(), default="mini", metavar="")
 args.add_argument("-t", "--title", help="HTML title tag", default=None, metavar="")
 args.add_argument("-g", "--signature", help="add signature to output file", action="store_true", default=False)
-args.add_argument("-i", "--include-css", help="include CSS stylesheet into output HTML file to make styles available offline", action="store_true")
-args.add_argument("-e", "--allow-html", help="don't escape HTML tags found in Markdown document", action="store_true")
+args.add_argument("-e", "--embedded-css", help="embed CSS stylesheet into output HTML file to make styles available offline", action="store_true")
+args.add_argument("-a", "--allow-html", help="don't escape HTML tags found in Markdown document", action="store_true")
 options = args.parse_args()
 
 def http_cached_get(resource_url):
@@ -100,11 +100,11 @@ if isinstance(u, str):
 else:
     stylesheet_urls = u
 
-# Download stylesheets if -i/--include-css is specified
-included_stylesheets = []
-if options.include_css:
+# Download stylesheets if -e/--embedded-css is specified
+embedded_stylesheets = []
+if options.embedded_css:
     for stylesheet_url in stylesheet_urls:
-        included_stylesheets.append(
+        embedded_stylesheets.append(
             http_cached_get(stylesheet_url)
         )
 
@@ -128,7 +128,7 @@ final_html_output = HTML_PAGE_TEMPLATE.render(
     body=MAIN_CONTAINER.render(
         content=converted_markdown
     ),
-    included_stylesheets=included_stylesheets,
+    embedded_stylesheets=embedded_stylesheets,
     stylesheet_urls=stylesheet_urls,
     custom_css=SELECTED_FLAVOUR.get("css-hack", None),
     title=title

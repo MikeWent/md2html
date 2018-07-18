@@ -27,13 +27,13 @@ Available flavours (click to preview):
 
 You can also run `md2html --help` to see available flavours.
 
-### Included stylesheets
+### Embedded stylesheets
 
 ```bash
-md2html.py -i README.md > docs.html
+md2html.py -e README.md > docs.html
 ```
 
-Output HTML will contain `<style>` with pre-downloaded stylesheet(s) instead of just `<link>` tag. This might be useful if you need to browse generated documents offline.
+Output HTML will contain `<style>` with pre-downloaded stylesheet(s) instead of just `<link>` tag. This might be useful if you need to **browse generated documents offline**.
 
 ### HTML title
 
